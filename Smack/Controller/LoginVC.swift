@@ -11,11 +11,28 @@ import UIKit
 class LoginVC: UIViewController {
 
     // Outlets
+    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var passwordTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
+    @IBAction func loginPressed(_ sender: Any) {
+        guard
+            let email = emailTxt.text, Utils.isEmailValid(email),
+            let password = passwordTxt.text, Utils.isPasswordValid(password)
+            else {
+                return
+        }
+        
+        AuthService.instance.loginUser(email: email, password: password) { (success) in
+            if success {
+                print("\(email) is now logged in")
+            }
+        }
+    }
+    
     @IBAction func closePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

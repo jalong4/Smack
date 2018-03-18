@@ -18,8 +18,11 @@
 		7990FE6A205E0CEB00C853DE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE69205E0CEB00C853DE /* GradientView.swift */; };
 		7990FE6D205E16A000C853DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE6C205E16A000C853DE /* Constants.swift */; };
 		7990FE6F205E1C5B00C853DE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE6E205E1C5B00C853DE /* LoginVC.swift */; };
-		7990FE71205E1D6300C853DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE70205E1D6300C853DE /* Extensions.swift */; };
 		7990FE73205E298100C853DE /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE72205E298100C853DE /* CreateAccountVC.swift */; };
+		7990FE76205ECF4F00C853DE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE75205ECF4F00C853DE /* AuthService.swift */; };
+		7990FE78205EDB1600C853DE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE77205EDB1600C853DE /* RoundedButton.swift */; };
+		7990FE7A205EDCC800C853DE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE79205EDCC800C853DE /* Utils.swift */; };
+		7990FE7C205EE6C100C853DE /* UserDateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE7B205EE6C100C853DE /* UserDateService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +42,11 @@
 		7990FE69205E0CEB00C853DE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		7990FE6C205E16A000C853DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7990FE6E205E1C5B00C853DE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		7990FE70205E1D6300C853DE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7990FE72205E298100C853DE /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		7990FE75205ECF4F00C853DE /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		7990FE77205EDB1600C853DE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		7990FE79205EDCC800C853DE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		7990FE7B205EE6C100C853DE /* UserDateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDateService.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -77,6 +83,7 @@
 		7990FE4A205DFE7E00C853DE /* Smack */ = {
 			isa = PBXGroup;
 			children = (
+				7990FE74205ECF3700C853DE /* Services */,
 				7990FE6B205E168900C853DE /* Utilities */,
 				7990FE64205E084700C853DE /* Model */,
 				7990FE63205E083D00C853DE /* View */,
@@ -116,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7990FE69205E0CEB00C853DE /* GradientView.swift */,
+				7990FE77205EDB1600C853DE /* RoundedButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,9 +139,18 @@
 			isa = PBXGroup;
 			children = (
 				7990FE6C205E16A000C853DE /* Constants.swift */,
-				7990FE70205E1D6300C853DE /* Extensions.swift */,
+				7990FE79205EDCC800C853DE /* Utils.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7990FE74205ECF3700C853DE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7990FE75205ECF4F00C853DE /* AuthService.swift */,
+				7990FE7B205EE6C100C853DE /* UserDateService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		9447A252366A0BBC6356A4AB /* Pods */ = {
@@ -292,10 +309,13 @@
 				7990FE68205E087600C853DE /* ChannelVC.swift in Sources */,
 				7990FE66205E086700C853DE /* ChatVC.swift in Sources */,
 				7990FE6F205E1C5B00C853DE /* LoginVC.swift in Sources */,
-				7990FE71205E1D6300C853DE /* Extensions.swift in Sources */,
 				7990FE6A205E0CEB00C853DE /* GradientView.swift in Sources */,
 				7990FE73205E298100C853DE /* CreateAccountVC.swift in Sources */,
+				7990FE78205EDB1600C853DE /* RoundedButton.swift in Sources */,
+				7990FE7C205EE6C100C853DE /* UserDateService.swift in Sources */,
 				7990FE4C205DFE7E00C853DE /* AppDelegate.swift in Sources */,
+				7990FE7A205EDCC800C853DE /* Utils.swift in Sources */,
+				7990FE76205ECF4F00C853DE /* AuthService.swift in Sources */,
 				7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */,
 				7990FE6D205E16A000C853DE /* Constants.swift in Sources */,
 			);
