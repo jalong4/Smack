@@ -15,6 +15,7 @@
 		7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE5F205E05C200C853DE /* SWRevealViewController.m */; };
 		7990FE66205E086700C853DE /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE65205E086700C853DE /* ChatVC.swift */; };
 		7990FE68205E087600C853DE /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE67205E087600C853DE /* ChannelVC.swift */; };
+		7990FE6A205E0CEB00C853DE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE69205E0CEB00C853DE /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		7990FE60205E05C200C853DE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7990FE65205E086700C853DE /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		7990FE67205E087600C853DE /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
+		7990FE69205E0CEB00C853DE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 		7990FE63205E083D00C853DE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7990FE69205E0CEB00C853DE /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				7990FE68205E087600C853DE /* ChannelVC.swift in Sources */,
 				7990FE66205E086700C853DE /* ChatVC.swift in Sources */,
+				7990FE6A205E0CEB00C853DE /* GradientView.swift in Sources */,
 				7990FE4C205DFE7E00C853DE /* AppDelegate.swift in Sources */,
 				7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */,
 			);
