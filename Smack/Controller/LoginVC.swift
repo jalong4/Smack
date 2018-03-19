@@ -13,9 +13,23 @@ class LoginVC: UIViewController {
     // Outlets
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    func setupView() {
+        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [.foregroundColor: smackPurplePlaceholder])
+        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [.foregroundColor: smackPurplePlaceholder])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginVC.handleTap))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -25,10 +39,19 @@ class LoginVC: UIViewController {
             else {
                 return
         }
-        
+
+        spinner.startAnimating()
+
         AuthService.instance.loginUser(email: email, password: password) { (success) in
             if success {
-                print("\(email) is now logged in")
+                AuthService.instance.findUser(email: email, completion: { (success) in
+                    if success {
+                        self.spinner.stopAnimating()
+                        print("\(email) is now logged in")
+                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
             }
         }
     }

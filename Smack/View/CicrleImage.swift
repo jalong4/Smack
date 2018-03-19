@@ -1,5 +1,5 @@
 //
-//  RoundedButton.swift
+//  CicrleImage.swift
 //  Smack
 //
 //  Created by Jim Long on 3/18/18.
@@ -9,13 +9,7 @@
 import UIKit
 
 @IBDesignable
-class RoundedButton: UIButton {
-    
-    @IBInspectable var cornerRadius: CGFloat = 3.0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-        }
-    }
+class CicrleImage: UIImageView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +22,8 @@ class RoundedButton: UIButton {
     }
     
     func setupView() {
-        self.layer.cornerRadius = cornerRadius
+        layer.cornerRadius = frame.width / 2
+        clipsToBounds = true
     }
-    
+
 }
