@@ -57,6 +57,7 @@ let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.329411764
 
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("NotifUserDataChanged")
 let NOTIF_CHANNEL_DATA_DID_CHANGE = Notification.Name("NotifChannelDataChanged")
+let NOTIF_CHANNEL_SELECTED = Notification.Name("NotifChannelSelected")
 
 // Socket Events
 let NEW_CHANNEL = "newChannel"

@@ -12,6 +12,7 @@ import Alamofire
 class MessageService {
     static let instance = MessageService()
     var channels = [Channel]()
+    var selectedChannel: Channel?
     
     func findAllChannels(completion: @escaping CompletionHandler) {
         
@@ -30,6 +31,7 @@ class MessageService {
                 for json in jsonArray {
                     self.channels.append(Channel(json: json))
                 }
+                NotificationCenter.default.post(name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
                 completion(true)
                 
                 
