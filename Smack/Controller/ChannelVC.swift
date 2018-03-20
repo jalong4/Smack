@@ -8,22 +8,47 @@
 
 import UIKit
 
-class ChannelVC: UIViewController {
+class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Outlets
     @IBOutlet weak var loginBtn: UIButton!
     @IBAction func prepareForUnwind(seque: UIStoryboardSegue){}
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var userImg: CicrleImage!
+    @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.rowHeight = 40
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-        getUserData()
+        setupUserInfo()
+        findAllChannels()
     }
     
-    @objc func userDataDidChange(_ notif: Notification) {
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupUserInfo()
+    }
+    
+    fileprivate func findAllChannels() {
+        
+        if !AuthService.instance.isLoggedIn { return }
+        
+        self.spinner.startAnimating()
+        
+        MessageService.instance.clearChannels()
+        MessageService.instance.findAllChannels { (success) in
+            if success {
+                self.spinner.stopAnimating()
+                self.tableview.reloadData()
+                
+            }
+        }
+    }
+    
+    fileprivate func setupUserInfo() {
         if AuthService.instance.isLoggedIn {
             loginBtn.setTitle(UserDataService.instance.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instance.avatarName)
@@ -33,26 +58,11 @@ class ChannelVC: UIViewController {
             userImg.image = #imageLiteral(resourceName: "menuProfileIcon")
             userImg.backgroundColor = .clear
         }
-        loginBtn.isHidden = false
-        userImg.isHidden = false
     }
     
-    func getUserData() {
-        
-        let email = AuthService.instance.userEmail
-        
-        if email == "" { return }
-        
-        if AuthService.instance.isLoggedIn {
-            loginBtn.isHidden = true
-            userImg.isHidden = true
-            AuthService.instance.findUser(email: email, completion: { (success) in
-                if success {
-                    print("User data retrieved for \(email)")
-                    NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                }
-            })
-        }
+    @objc func userDataDidChange(_ notif: Notification) {
+        setupUserInfo()
+        tableview.reloadData()
     }
 
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -64,5 +74,19 @@ class ChannelVC: UIViewController {
         } else {
             performSegue(withIdentifier: TO_LOGIN, sender: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.channels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: CHANNEL_CELL) as? ChannelCell
+            else { return ChannelCell() }
+        
+        let channel = MessageService.instance.channels[indexPath.row]
+        cell.configureCell(name: channel.name)
+        return cell
     }
 }

@@ -44,7 +44,7 @@ class LoginVC: UIViewController {
 
         AuthService.instance.loginUser(email: email, password: password) { (success) in
             if success {
-                AuthService.instance.findUser(email: email, completion: { (success) in
+                AuthService.instance.findUserByEmail(completion: { (success) in
                     if success {
                         self.spinner.stopAnimating()
                         print("\(email) is now logged in")

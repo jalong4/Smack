@@ -142,7 +142,7 @@
                                 <rect key="frame" x="0.0" y="125" width="375" height="427"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Nnb-jw-z7R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelCell" id="Nnb-jw-z7R" customClass="ChannelCell" customModule="Smack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nnb-jw-z7R" id="XWr-FJ-HWj">
@@ -162,15 +162,23 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="channelLbl" destination="vQf-BD-wFv" id="Map-qZ-qhX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4CB-Dj-i0O">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FpH-UX-UMB" firstAttribute="top" secondItem="FWV-0m-usZ" secondAttribute="bottom" constant="20" id="21b-3n-NMJ"/>
                             <constraint firstItem="FWV-0m-usZ" firstAttribute="centerY" secondItem="PLg-GN-FO9" secondAttribute="centerY" id="2EM-5e-2Cz"/>
                             <constraint firstAttribute="trailing" secondItem="FpH-UX-UMB" secondAttribute="trailing" id="6ty-Cz-1qf"/>
+                            <constraint firstItem="4CB-Dj-i0O" firstAttribute="centerX" secondItem="asM-k8-cIM" secondAttribute="centerX" id="HCw-bm-PpN"/>
                             <constraint firstAttribute="trailing" secondItem="FWV-0m-usZ" secondAttribute="trailing" constant="72" id="P6f-ml-xAZ"/>
                             <constraint firstItem="hlE-Sf-xBm" firstAttribute="top" secondItem="FpH-UX-UMB" secondAttribute="bottom" constant="20" id="Pms-rc-t7o"/>
                             <constraint firstItem="FpH-UX-UMB" firstAttribute="leading" secondItem="asM-k8-cIM" secondAttribute="leading" id="S71-Nq-0sK"/>
@@ -181,11 +189,14 @@
                             <constraint firstItem="5b9-wM-Mno" firstAttribute="leading" secondItem="hlE-Sf-xBm" secondAttribute="trailing" constant="20" id="iaS-0u-W0m"/>
                             <constraint firstItem="YL7-wx-U8r" firstAttribute="top" secondItem="9N4-dS-XgJ" secondAttribute="bottom" constant="24" id="pIc-bw-aU8"/>
                             <constraint firstItem="PLg-GN-FO9" firstAttribute="leading" secondItem="asM-k8-cIM" secondAttribute="leadingMargin" id="ptM-MG-7d1"/>
+                            <constraint firstItem="4CB-Dj-i0O" firstAttribute="centerY" secondItem="asM-k8-cIM" secondAttribute="centerY" id="vhJ-m2-bka"/>
                             <constraint firstItem="PLg-GN-FO9" firstAttribute="top" secondItem="YL7-wx-U8r" secondAttribute="bottom" constant="20" id="y65-Q9-aqo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loginBtn" destination="5b9-wM-Mno" id="67P-3L-woK"/>
+                        <outlet property="spinner" destination="4CB-Dj-i0O" id="bub-gA-cRv"/>
+                        <outlet property="tableview" destination="FpH-UX-UMB" id="9JY-1o-TzU"/>
                         <outlet property="userImg" destination="hlE-Sf-xBm" id="zAc-YQ-J5l"/>
                         <segue destination="O3N-tl-spn" kind="show" identifier="toLogin" id="sDC-9g-cIs"/>
                     </connections>
@@ -557,7 +568,7 @@
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gyj-tB-Jgd">
                                 <rect key="frame" x="0.0" y="78" width="375" height="589"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MLg-NU-nMK">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

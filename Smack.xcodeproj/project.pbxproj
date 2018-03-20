@@ -28,6 +28,9 @@
 		7990FE84205F968300C853DE /* CicrleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE83205F968300C853DE /* CicrleImage.swift */; };
 		7990FE87205FBE6D00C853DE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE85205FBE6D00C853DE /* ProfileVC.swift */; };
 		7990FE88205FBE6D00C853DE /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990FE86205FBE6D00C853DE /* ProfileVC.xib */; };
+		7990FE8B206067DE00C853DE /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE8A206067DE00C853DE /* MessageService.swift */; };
+		7990FE8D2060681300C853DE /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE8C2060681300C853DE /* Channel.swift */; };
+		7990FE8F20609AB800C853DE /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE8E20609AB800C853DE /* ChannelCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		7990FE83205F968300C853DE /* CicrleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CicrleImage.swift; sourceTree = "<group>"; };
 		7990FE85205FBE6D00C853DE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		7990FE86205FBE6D00C853DE /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
+		7990FE8A206067DE00C853DE /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
+		7990FE8C2060681300C853DE /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		7990FE8E20609AB800C853DE /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,6 +145,7 @@
 				7990FE77205EDB1600C853DE /* RoundedButton.swift */,
 				7990FE81205F0E7900C853DE /* AvatarCell.swift */,
 				7990FE83205F968300C853DE /* CicrleImage.swift */,
+				7990FE8E20609AB800C853DE /* ChannelCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 		7990FE64205E084700C853DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7990FE8C2060681300C853DE /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 			children = (
 				7990FE75205ECF4F00C853DE /* AuthService.swift */,
 				7990FE7B205EE6C100C853DE /* UserDateService.swift */,
+				7990FE8A206067DE00C853DE /* MessageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -336,11 +345,14 @@
 				7990FE6F205E1C5B00C853DE /* LoginVC.swift in Sources */,
 				7990FE87205FBE6D00C853DE /* ProfileVC.swift in Sources */,
 				7990FE6A205E0CEB00C853DE /* GradientView.swift in Sources */,
+				7990FE8B206067DE00C853DE /* MessageService.swift in Sources */,
+				7990FE8D2060681300C853DE /* Channel.swift in Sources */,
 				7990FE73205E298100C853DE /* CreateAccountVC.swift in Sources */,
 				7990FE78205EDB1600C853DE /* RoundedButton.swift in Sources */,
 				7990FE7C205EE6C100C853DE /* UserDateService.swift in Sources */,
 				7990FE4C205DFE7E00C853DE /* AppDelegate.swift in Sources */,
 				7990FE7A205EDCC800C853DE /* Utils.swift in Sources */,
+				7990FE8F20609AB800C853DE /* ChannelCell.swift in Sources */,
 				7990FE76205ECF4F00C853DE /* AuthService.swift in Sources */,
 				7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */,
 				7990FE84205F968300C853DE /* CicrleImage.swift in Sources */,
