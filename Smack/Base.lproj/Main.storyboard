@@ -61,8 +61,8 @@
                                         </constraints>
                                         <state key="normal" image="smackBurger"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcC-hE-VI0">
-                                        <rect key="frame" x="161" y="45.5" width="52" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcC-hE-VI0">
+                                        <rect key="frame" x="187" y="56" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -77,10 +77,32 @@
                                     <constraint firstItem="FcC-hE-VI0" firstAttribute="centerX" secondItem="OnZ-88-jZP" secondAttribute="centerX" id="od1-Yb-rVf"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxf-3e-sBz">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dqq-Sl-yp8"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loF-Fq-ALL">
+                                <rect key="frame" x="321" y="632" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" image="send"/>
+                                <connections>
+                                    <action selector="sendMessagePressed:" destination="Lun-Zn-5ip" eventType="touchUpInside" id="OJn-lf-ymE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zxf-3e-sBz" firstAttribute="leading" secondItem="Kx2-ih-zgO" secondAttribute="leading" id="AxF-dW-g4R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="loF-Fq-ALL" secondAttribute="trailing" constant="8" id="D2t-X9-sBB"/>
+                            <constraint firstAttribute="trailing" secondItem="zxf-3e-sBz" secondAttribute="trailing" id="JKq-Qm-jp0"/>
+                            <constraint firstItem="loF-Fq-ALL" firstAttribute="centerY" secondItem="zxf-3e-sBz" secondAttribute="centerY" id="X8C-h7-qng"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="leading" secondItem="Kx2-ih-zgO" secondAttribute="leading" id="Yu7-dP-BgL"/>
+                            <constraint firstItem="ZHc-R3-gVr" firstAttribute="top" secondItem="zxf-3e-sBz" secondAttribute="bottom" id="cNm-He-5Lo"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="top" secondItem="Kx2-ih-zgO" secondAttribute="top" id="ngU-sP-WLq"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="trailing" secondItem="Kx2-ih-zgO" secondAttribute="trailing" id="phL-0f-i0v"/>
                         </constraints>
@@ -88,6 +110,7 @@
                     <connections>
                         <outlet property="channelNameLbl" destination="FcC-hE-VI0" id="RZx-Mq-2Nd"/>
                         <outlet property="menuBtn" destination="I3y-Em-c7u" id="6CI-eK-pl7"/>
+                        <outlet property="messageTxtBox" destination="zxf-3e-sBz" id="3MI-ia-IPi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcg-PL-xEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -634,6 +657,7 @@
         <image name="dark1" width="100" height="100"/>
         <image name="menuProfileIcon" width="99" height="99"/>
         <image name="profileDefault" width="192" height="192"/>
+        <image name="send" width="30" height="30"/>
         <image name="smackBack" width="28" height="28"/>
         <image name="smackBurger" width="40" height="40"/>
         <image name="smackLogo" width="48" height="40"/>

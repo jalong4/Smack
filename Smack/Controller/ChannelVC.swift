@@ -24,7 +24,9 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.channelDataDidChange(_:)), name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
+        
         setupUserInfo()
+        findAllChannels()
         
         SocketService.instance.getChannel { (success) in
             if success {
@@ -56,7 +58,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func userDataDidChange(_ notif: Notification) {
         setupUserInfo()
-        findAllChannels()
     }
     
     fileprivate func findAllChannels() {
@@ -106,6 +107,10 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: CHANNEL_CELL) as? ChannelCell
             else { return ChannelCell() }
+        
+        if MessageService.instance.channels.isEmpty {  // in case channels are cleared in middle of reloadData
+            return ChannelCell()
+        }
         
         let channel = MessageService.instance.channels[indexPath.row]
         cell.configureCell(channel: channel)

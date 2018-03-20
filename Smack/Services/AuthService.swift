@@ -135,6 +135,7 @@ class AuthService {
                     return
             }
             UserDataService.instance.setUserData(id: id, color: color, avatarName: avatarName, email: email, name: name)
+            NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             completion(true)
         } else {
             completion(false)
