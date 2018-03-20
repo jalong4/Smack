@@ -21,6 +21,7 @@ class ChatVC: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
         getUserData()
+//        MessageService.instance.findAllChannels { (_) in }
     }
     
     func getUserData() {

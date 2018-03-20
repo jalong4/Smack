@@ -30,6 +30,7 @@ let URL_LOGIN = "\(BASE_URL)/v1/account/login"
 let URL_USER_ADD = "\(BASE_URL)/v1/user/add"
 let URL_FIND_USER_BY_EMAIL = "\(BASE_URL)/v1/user/byEmail/"
 let URL_GET_CHANNELS = "\(BASE_URL)/v1/channel"
+let URL_ADD_CHANNEL = "\(BASE_URL)/v1/channel/add"
 
 // Headers
 let HEADER = [
@@ -54,3 +55,4 @@ let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.329411764
 // Notification Constants
 
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("NotifUserDataChanged")
+let NOTIF_CHANNEL_DATA_DID_CHANGE = Notification.Name("NotifChannelDataChanged")

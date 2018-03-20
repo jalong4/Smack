@@ -23,6 +23,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableview.rowHeight = 40
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.channelDataDidChange(_:)), name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
         setupUserInfo()
         findAllChannels()
     }
@@ -64,7 +65,19 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         setupUserInfo()
         tableview.reloadData()
     }
+    
+    @objc func channelDataDidChange(_ notif: Notification) {
+        findAllChannels()
+    }
 
+    @IBAction func addChannelPressed(_ sender: Any) {
+        
+        if !AuthService.instance.isLoggedIn { return }
+        
+        let addChannelVC = AddChannelVC()
+        addChannelVC.modalPresentationStyle = .custom
+        present(addChannelVC, animated: true, completion: nil)
+    }
     @IBAction func loginBtnPressed(_ sender: Any) {
         
         if AuthService.instance.isLoggedIn {
@@ -86,7 +99,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             else { return ChannelCell() }
         
         let channel = MessageService.instance.channels[indexPath.row]
-        cell.configureCell(name: channel.name)
+        cell.configureCell(channel: channel)
         return cell
     }
 }
