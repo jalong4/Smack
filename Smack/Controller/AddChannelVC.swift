@@ -38,22 +38,16 @@ class AddChannelVC: UIViewController {
     
     @IBAction func createChannelPressed(_ sender: Any) {
         
-        guard
-            let name = channelNameTxt.text, name != "",
-            let description = channelDescriptionTxt.text, description != ""
-            else {
-                return
-            }
+        guard let name = channelNameTxt.text, name != "" else { return }
+        let description = channelDescriptionTxt.text ?? ""
         
         spinner.startAnimating()
-        MessageService.instance.addChannel(name: name, description: description, completion: { (success) in
+        SocketService.instance.addChannel(name: name, description: description) { (success) in
             if success {
                 self.spinner.stopAnimating()
-                NotificationCenter.default.post(name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
                 self.dismiss(animated: true, completion: nil)
             }
-        })
-
+        }
     }
 
 }

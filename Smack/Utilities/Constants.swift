@@ -25,6 +25,7 @@ let USER_EMAIL = "userEmail"
 // URL Constants
 
 let BASE_URL = "https://smack-chatapp.herokuapp.com"
+let SOCKET_URL = "https://smack-chatapp.herokuapp.com/v1/"
 let URL_REGISTER = "\(BASE_URL)/v1/account/register"
 let URL_LOGIN = "\(BASE_URL)/v1/account/login"
 let URL_USER_ADD = "\(BASE_URL)/v1/user/add"
@@ -56,3 +57,9 @@ let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.329411764
 
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("NotifUserDataChanged")
 let NOTIF_CHANNEL_DATA_DID_CHANGE = Notification.Name("NotifChannelDataChanged")
+
+// Socket Events
+let NEW_CHANNEL = "newChannel"
+let CHANNEL_CREATED = "channelCreated"
+let START_TYPE = "startType"
+let STOP_TYPE = "stopType"

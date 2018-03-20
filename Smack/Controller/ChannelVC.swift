@@ -14,7 +14,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var loginBtn: UIButton!
     @IBAction func prepareForUnwind(seque: UIStoryboardSegue){}
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var userImg: CicrleImage!
+    @IBOutlet weak var userImg: CircleImage!
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +25,38 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.channelDataDidChange(_:)), name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
         setupUserInfo()
-        findAllChannels()
+        
+        SocketService.instance.getChannel { (success) in
+            if success {
+                self.tableview.reloadData()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupUserInfo()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    fileprivate func setupUserInfo() {
+        if AuthService.instance.isLoggedIn {
+            loginBtn.setTitle(UserDataService.instance.name, for: .normal)
+            userImg.image = UIImage(named: UserDataService.instance.avatarName)
+            userImg.backgroundColor = UserDataService.instance.getAvatarColor()
+        } else {
+            loginBtn.setTitle("Login", for: .normal)
+            userImg.image = #imageLiteral(resourceName: "menuProfileIcon")
+            userImg.backgroundColor = .clear
+        }
+    }
+    
+    @objc func userDataDidChange(_ notif: Notification) {
+        setupUserInfo()
+        findAllChannels()
     }
     
     fileprivate func findAllChannels() {
@@ -49,25 +75,8 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    fileprivate func setupUserInfo() {
-        if AuthService.instance.isLoggedIn {
-            loginBtn.setTitle(UserDataService.instance.name, for: .normal)
-            userImg.image = UIImage(named: UserDataService.instance.avatarName)
-            userImg.backgroundColor = UserDataService.instance.getAvatarColor()
-        } else {
-            loginBtn.setTitle("Login", for: .normal)
-            userImg.image = #imageLiteral(resourceName: "menuProfileIcon")
-            userImg.backgroundColor = .clear
-        }
-    }
-    
-    @objc func userDataDidChange(_ notif: Notification) {
-        setupUserInfo()
-        tableview.reloadData()
-    }
-    
     @objc func channelDataDidChange(_ notif: Notification) {
-        findAllChannels()
+        tableview.reloadData()
     }
 
     @IBAction func addChannelPressed(_ sender: Any) {

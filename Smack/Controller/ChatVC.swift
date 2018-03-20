@@ -21,23 +21,25 @@ class ChatVC: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
         getUserData()
-//        MessageService.instance.findAllChannels { (_) in }
+        MessageService.instance.findAllChannels { (success) in
+            if success {
+                NotificationCenter.default.post(name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
+            }
+            
+        }
     }
     
     func getUserData() {
         
+        if !AuthService.instance.isLoggedIn { return }
         let email = AuthService.instance.userEmail
         
-        if email == "" { return }
-        
-        if AuthService.instance.isLoggedIn {
-            AuthService.instance.findUserByEmail(completion: { (success) in
-                if success {
-                    print("User data retrieved for \(email)")
-                    NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                }
-            })
-        }
+        AuthService.instance.findUserByEmail(completion: { (success) in
+            if success {
+                print("User data retrieved for \(email)")
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+            }
+        })
     }
 
 }

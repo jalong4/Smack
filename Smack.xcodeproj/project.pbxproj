@@ -25,7 +25,7 @@
 		7990FE7C205EE6C100C853DE /* UserDateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE7B205EE6C100C853DE /* UserDateService.swift */; };
 		7990FE80205F0C4800C853DE /* AvatarPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE7F205F0C4800C853DE /* AvatarPickerVC.swift */; };
 		7990FE82205F0E7900C853DE /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE81205F0E7900C853DE /* AvatarCell.swift */; };
-		7990FE84205F968300C853DE /* CicrleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE83205F968300C853DE /* CicrleImage.swift */; };
+		7990FE84205F968300C853DE /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE83205F968300C853DE /* CircleImage.swift */; };
 		7990FE87205FBE6D00C853DE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE85205FBE6D00C853DE /* ProfileVC.swift */; };
 		7990FE88205FBE6D00C853DE /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990FE86205FBE6D00C853DE /* ProfileVC.xib */; };
 		7990FE8B206067DE00C853DE /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE8A206067DE00C853DE /* MessageService.swift */; };
@@ -33,6 +33,7 @@
 		7990FE8F20609AB800C853DE /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE8E20609AB800C853DE /* ChannelCell.swift */; };
 		7990FE922060ADF300C853DE /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE902060ADF300C853DE /* AddChannelVC.swift */; };
 		7990FE932060ADF300C853DE /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990FE912060ADF300C853DE /* AddChannelVC.xib */; };
+		7990FE952061676D00C853DE /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE942061676D00C853DE /* SocketService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +60,7 @@
 		7990FE7B205EE6C100C853DE /* UserDateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDateService.swift; sourceTree = "<group>"; };
 		7990FE7F205F0C4800C853DE /* AvatarPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerVC.swift; sourceTree = "<group>"; };
 		7990FE81205F0E7900C853DE /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
-		7990FE83205F968300C853DE /* CicrleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CicrleImage.swift; sourceTree = "<group>"; };
+		7990FE83205F968300C853DE /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		7990FE85205FBE6D00C853DE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		7990FE86205FBE6D00C853DE /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		7990FE8A206067DE00C853DE /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		7990FE8E20609AB800C853DE /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		7990FE902060ADF300C853DE /* AddChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelVC.swift; sourceTree = "<group>"; };
 		7990FE912060ADF300C853DE /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
+		7990FE942061676D00C853DE /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,7 +151,7 @@
 				7990FE69205E0CEB00C853DE /* GradientView.swift */,
 				7990FE77205EDB1600C853DE /* RoundedButton.swift */,
 				7990FE81205F0E7900C853DE /* AvatarCell.swift */,
-				7990FE83205F968300C853DE /* CicrleImage.swift */,
+				7990FE83205F968300C853DE /* CircleImage.swift */,
 				7990FE8E20609AB800C853DE /* ChannelCell.swift */,
 			);
 			path = View;
@@ -178,6 +180,7 @@
 				7990FE75205ECF4F00C853DE /* AuthService.swift */,
 				7990FE7B205EE6C100C853DE /* UserDateService.swift */,
 				7990FE8A206067DE00C853DE /* MessageService.swift */,
+				7990FE942061676D00C853DE /* SocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -360,10 +363,11 @@
 				7990FE4C205DFE7E00C853DE /* AppDelegate.swift in Sources */,
 				7990FE7A205EDCC800C853DE /* Utils.swift in Sources */,
 				7990FE8F20609AB800C853DE /* ChannelCell.swift in Sources */,
+				7990FE952061676D00C853DE /* SocketService.swift in Sources */,
 				7990FE76205ECF4F00C853DE /* AuthService.swift in Sources */,
 				7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */,
 				7990FE922060ADF300C853DE /* AddChannelVC.swift in Sources */,
-				7990FE84205F968300C853DE /* CicrleImage.swift in Sources */,
+				7990FE84205F968300C853DE /* CircleImage.swift in Sources */,
 				7990FE6D205E16A000C853DE /* Constants.swift in Sources */,
 				7990FE80205F0C4800C853DE /* AvatarPickerVC.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  CicrleImage.swift
+//  CircleImage.swift
 //  Smack
 //
 //  Created by Jim Long on 3/18/18.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class CicrleImage: UIImageView {
+class CircleImage: UIImageView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
