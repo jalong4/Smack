@@ -34,6 +34,7 @@
 		7990FE922060ADF300C853DE /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE902060ADF300C853DE /* AddChannelVC.swift */; };
 		7990FE932060ADF300C853DE /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990FE912060ADF300C853DE /* AddChannelVC.xib */; };
 		7990FE952061676D00C853DE /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE942061676D00C853DE /* SocketService.swift */; };
+		7990FE9720618A4000C853DE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE9620618A4000C853DE /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		7990FE902060ADF300C853DE /* AddChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelVC.swift; sourceTree = "<group>"; };
 		7990FE912060ADF300C853DE /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
 		7990FE942061676D00C853DE /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		7990FE9620618A4000C853DE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				7990FE8C2060681300C853DE /* Channel.swift */,
+				7990FE9620618A4000C853DE /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				7990FE952061676D00C853DE /* SocketService.swift in Sources */,
 				7990FE76205ECF4F00C853DE /* AuthService.swift in Sources */,
 				7990FE61205E05C200C853DE /* SWRevealViewController.m in Sources */,
+				7990FE9720618A4000C853DE /* Message.swift in Sources */,
 				7990FE922060ADF300C853DE /* AddChannelVC.swift in Sources */,
 				7990FE84205F968300C853DE /* CircleImage.swift in Sources */,
 				7990FE6D205E16A000C853DE /* Constants.swift in Sources */,

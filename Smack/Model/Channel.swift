@@ -9,9 +9,9 @@
 import Foundation
 
 struct Channel {
-    var id: String
-    var name: String
-    var description: String
+    public private(set) var id: String
+    public private(set) var name: String
+    public private(set) var description: String
 
     init(json: [String: Any]) {
         self.id = json["_id"] as? String ?? ""

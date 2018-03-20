@@ -6,7 +6,7 @@
 //  Copyright © 2018 Jim Long. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Utils {
     static func isEmailValid(_ email: String?) -> Bool {
@@ -31,5 +31,21 @@ class Utils {
          */
         
 //        return NSPredicate(format:"SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}").evaluate(with: password)
+    }
+    
+    static func getColor(rgba: String) -> UIColor {
+        
+        // Takes a Stringified JSON array, returns a UIColor
+        // eg. "[0.494117647058824,0.752941176470588,0.227450980392157, 1]"
+        // returns light gray if string is invalid
+        
+        guard
+            let data = rgba.data(using: .utf8),
+            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [CGFloat],
+            let r = json?[0], let g = json?[1], let b = json?[2], let a = json?[3]
+            else {
+                return UIColor.lightGray
+        }
+        return UIColor(red: r, green: g, blue: b, alpha:a)
     }
 }

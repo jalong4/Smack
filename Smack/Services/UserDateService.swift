@@ -30,14 +30,7 @@ class UserDataService {
     }
     
     func getAvatarColor() -> UIColor {
-        guard
-            let data = avatarColor.data(using: .utf8),
-            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [CGFloat],
-            let r = json?[0], let g = json?[1], let b = json?[2], let a = json?[3]
-        else {
-            return UIColor.lightGray
-        }
-        return UIColor(red: r, green: g, blue: b, alpha:a)
+        return Utils.getColor(rgba: avatarColor)
     }
     
     func logoutUser() {
