@@ -8,15 +8,20 @@
 
 import UIKit
 
-class ChatVC: UIViewController {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Outlets
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
     @IBOutlet weak var messageTxtBox: UITextField!
+    @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.estimatedRowHeight = 100
+        tableview.rowHeight = UITableViewAutomaticDimension
         view.bindToKeyboard()
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -30,9 +35,17 @@ class ChatVC: UIViewController {
 
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func getUserData() {
         
-        if !AuthService.instance.isLoggedIn { return }
+        if !AuthService.instance.isLoggedIn {
+            channelNameLbl.text = "Please Log In"
+            return
+        }
+        
         let email = AuthService.instance.userEmail
         
         AuthService.instance.findUserByEmail(completion: { (success) in
@@ -79,9 +92,10 @@ class ChatVC: UIViewController {
             onLoginGetMessages()
         } else {
             channelNameLbl.text = "Please Log In"
+            tableview.reloadData()
         }
     }
-    
+
     func onLoginGetMessages() {
 
         MessageService.instance.findAllChannels { (success) in
@@ -102,9 +116,27 @@ class ChatVC: UIViewController {
         
         MessageService.instance.findAllMessages(for: channelId, completion: { (success) in
             if success {
-                
+                self.tableview.reloadData()
             }
         })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: MESSAGE_CELL) as? MessageCell
+            else { return MessageCell() }
+        
+        if MessageService.instance.messages.isEmpty {  // in case messages are cleared in middle of reloadData
+            return MessageCell()
+        }
+        
+        let message = MessageService.instance.messages[indexPath.row]
+        cell.configureCell(message: message)
+        return cell
     }
 
 }

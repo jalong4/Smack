@@ -29,6 +29,7 @@ class MessageService {
                     completion(false)
                     return
                 }
+                self.clearChannels()
                 for json in jsonArray {
                     self.channels.append(Channel(json: json))
                 }
@@ -61,7 +62,6 @@ class MessageService {
                 for json in jsonArray {
                     self.messages.append(Message(json: json))
                 }
-                NotificationCenter.default.post(name: NOTIF_MESSAGE_DATA_DID_CHANGE, object: nil)
                 completion(true)
                 
                 
@@ -72,13 +72,13 @@ class MessageService {
         })
     }
     func clearMessages() {
-        channels.removeAll()
-        NotificationCenter.default.post(name: NOTIF_MESSAGE_DATA_DID_CHANGE, object: nil)
+        messages.removeAll()
     }
     
     func clearChannels() {
+        selectedChannel = nil
         channels.removeAll()
-        NotificationCenter.default.post(name: NOTIF_MESSAGE_DATA_DID_CHANGE, object: nil)
+        NotificationCenter.default.post(name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
     }
 
 

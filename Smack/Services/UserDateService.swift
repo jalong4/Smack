@@ -42,7 +42,10 @@ class UserDataService {
         AuthService.instance.isLoggedIn = false
         AuthService.instance.authToken = ""
         AuthService.instance.userEmail = ""
+        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         MessageService.instance.clearChannels()
+        MessageService.instance.clearMessages()
+
     }
     
 }

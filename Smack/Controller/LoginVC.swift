@@ -48,7 +48,6 @@ class LoginVC: UIViewController {
                     if success {
                         self.spinner.stopAnimating()
                         print("\(email) is now logged in")
-                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                         self.dismiss(animated: true, completion: nil)
                     }
                 })

@@ -50,6 +50,7 @@ let AUTH_HEADER = [
 // Reuse Identifiers
 let AVATAR_CELL = "AvatarCell"
 let CHANNEL_CELL = "ChannelCell"
+let MESSAGE_CELL = "MessageCell"
 
 // Colors
 let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
@@ -59,7 +60,6 @@ let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.329411764
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("NotifUserDataChanged")
 let NOTIF_CHANNEL_DATA_DID_CHANGE = Notification.Name("NotifChannelDataChanged")
 let NOTIF_CHANNEL_SELECTED = Notification.Name("NotifChannelSelected")
-let NOTIF_MESSAGE_DATA_DID_CHANGE = Notification.Name("NotifMessageDataChanged")
 
 // Socket Events
 let NEW_CHANNEL = "newChannel"

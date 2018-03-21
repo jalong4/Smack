@@ -40,6 +40,7 @@ class SocketService: NSObject {
             if dataArray.count < 3 { return }
             
             MessageService.instance.channels.append(Channel(json: ["name": dataArray[0], "description": dataArray[1], "_id": dataArray[2]]))
+            NotificationCenter.default.post(name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
             completion(true)
         }
 
