@@ -36,7 +36,6 @@
 		7990FE932060ADF300C853DE /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990FE912060ADF300C853DE /* AddChannelVC.xib */; };
 		7990FE952061676D00C853DE /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE942061676D00C853DE /* SocketService.swift */; };
 		7990FE9720618A4000C853DE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE9620618A4000C853DE /* Message.swift */; };
-		7990FE9920619BB000C853DE /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990FE9820619BB000C853DE /* KeyboardBoundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +73,6 @@
 		7990FE912060ADF300C853DE /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
 		7990FE942061676D00C853DE /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		7990FE9620618A4000C853DE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		7990FE9820619BB000C853DE /* KeyboardBoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
 		81605A769782D27E3E9828AE /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,7 +152,6 @@
 		7990FE63205E083D00C853DE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7990FE9820619BB000C853DE /* KeyboardBoundView.swift */,
 				7990FE69205E0CEB00C853DE /* GradientView.swift */,
 				7990FE77205EDB1600C853DE /* RoundedButton.swift */,
 				7990FE81205F0E7900C853DE /* AvatarCell.swift */,
@@ -358,7 +355,6 @@
 			files = (
 				7990FE68205E087600C853DE /* ChannelVC.swift in Sources */,
 				7990FE66205E086700C853DE /* ChatVC.swift in Sources */,
-				7990FE9920619BB000C853DE /* KeyboardBoundView.swift in Sources */,
 				7990FE82205F0E7900C853DE /* AvatarCell.swift in Sources */,
 				7990FE6F205E1C5B00C853DE /* LoginVC.swift in Sources */,
 				7990FE87205FBE6D00C853DE /* ProfileVC.swift in Sources */,

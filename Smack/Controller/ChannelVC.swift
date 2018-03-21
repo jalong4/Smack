@@ -21,7 +21,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableview.delegate = self
         tableview.dataSource = self
         tableview.rowHeight = 40
-        self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 74
+        self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 66
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.channelDataDidChange(_:)), name: NOTIF_CHANNEL_DATA_DID_CHANGE, object: nil)
         
@@ -30,13 +30,16 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         SocketService.instance.getChannel { (success) in
             if success {
-                self.tableview.reloadData()
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
             }
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        revealViewController().frontViewController.view.endEditing(true)
         setupUserInfo()
     }
     
@@ -69,15 +72,18 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         MessageService.instance.clearChannels()
         MessageService.instance.findAllChannels { (success) in
             if success {
-                self.spinner.stopAnimating()
-                self.tableview.reloadData()
-                
+                DispatchQueue.main.async {
+                    self.spinner.stopAnimating()
+                    self.tableview.reloadData()
+                }
             }
         }
     }
     
     @objc func channelDataDidChange(_ notif: Notification) {
-        tableview.reloadData()
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
     }
 
     @IBAction func addChannelPressed(_ sender: Any) {

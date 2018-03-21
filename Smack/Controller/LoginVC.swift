@@ -33,6 +33,7 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
         guard
             let email = emailTxt.text, Utils.isEmailValid(email),
             let password = passwordTxt.text, Utils.isPasswordValid(password)
@@ -41,6 +42,7 @@ class LoginVC: UIViewController {
         }
 
         spinner.startAnimating()
+                dismiss(animated: true, completion: nil)
 
         AuthService.instance.loginUser(email: email, password: password) { (success) in
             if success {
