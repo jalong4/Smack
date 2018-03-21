@@ -53,11 +53,11 @@ class SocketService: NSObject {
         completion(true)
     }
     
-    func getMessage(completion: @escaping CompletionHandler) {
+    func getMessage(completionHandler: @escaping (_ newMessage: Message?) -> Void) {
         socket.on(MESSAGE_CREATED) { (dataArray, ack) in
             
             if dataArray.count < 8 {
-                completion(false)
+                completionHandler(nil)
                 return
             }
             
@@ -72,20 +72,7 @@ class SocketService: NSObject {
                 "timeStamp": dataArray[7]
             ]
             
-            guard
-                let selectedChannelId = MessageService.instance.selectedChannel?.id,
-                let channelId = json["channelId"] as? String
-            
-            else {
-                completion(false)
-                return
-            }
-            
-            if channelId == selectedChannelId && AuthService.instance.isLoggedIn {
-                MessageService.instance.messages.append(Message(json: json))
-            }
-            
-            completion(true)
+            completionHandler(Message(json: json))
         }
     }
 

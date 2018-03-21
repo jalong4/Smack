@@ -22,18 +22,21 @@ class MessageCell: UITableViewCell {
     
     func configureCell(message: Message) {
 
-
-        
-        let header = NSMutableAttributedString(string: "\(message.userName) ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.black])
-        
-        let timeAgo = Utils.timeAgoSinceDate(message.date, currentDate: Date(), numericDates: true)
-        header.append(NSAttributedString(string: timeAgo, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.black]))
-
-        messageHeaderLbl.attributedText = header
         messageBodyLbl.text = message.messageBody
         
         userImg.image = UIImage(named: message.userAvatar)
         userImg.backgroundColor = Utils.getColor(rgba: message.userAvatarColor)
+        
+        let headerBoldFont = UIFont(name: "HelveticaNeue-Bold", size: 14.0) ?? UIFont.boldSystemFont(ofSize: 14)
+        let headerRegularFont = UIFont(name: "HelveticaNeue-Regular", size: 12.0) ?? UIFont.systemFont(ofSize: 12)
+
+
+        let header = NSMutableAttributedString(string: "\(message.userName) ", attributes: [NSAttributedStringKey.font: headerBoldFont, NSAttributedStringKey.foregroundColor: UIColor.black])
+        
+        let timestamp = message.date.toString(dateFormat: "MMM d, h:mm a")
+        header.append(NSAttributedString(string: timestamp, attributes: [NSAttributedStringKey.font: headerRegularFont, NSAttributedStringKey.foregroundColor: UIColor.darkGray]))
+
+        messageHeaderLbl.attributedText = header
     }
 
 }

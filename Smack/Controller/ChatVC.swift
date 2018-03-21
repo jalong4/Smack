@@ -46,8 +46,18 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         view.addGestureRecognizer(tap)
 
         
-        SocketService.instance.getMessage { (success) in
-            if success {
+        SocketService.instance.getMessage { (message) in
+            
+            guard
+                let selectedChannelId = MessageService.instance.selectedChannel?.id,
+                let message = message
+                else {
+                    return
+            }
+            
+            if message.channelId == selectedChannelId && AuthService.instance.isLoggedIn {
+                MessageService.instance.messages.append(message)
+
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                     if MessageService.instance.messages.count > 0 {

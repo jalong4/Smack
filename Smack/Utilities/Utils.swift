@@ -52,7 +52,7 @@ class Utils {
     static func convertDateFormatter(timestamp: String) -> Date?
     {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"//this your string date format
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" // date format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
         let date = dateFormatter.date(from: timestamp)
         return date
@@ -119,5 +119,13 @@ class Utils {
             return "Just now"
         }
         
+    }
+}
+
+extension Date {
+    func toString(dateFormat: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        return formatter.string(from: self)
     }
 }
