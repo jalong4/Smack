@@ -35,6 +35,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.onChannelSelected(_:)), name: NOTIF_CHANNEL_SELECTED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.idleTimerExpired(_:)), name: NOTIF_TIMER_EXPIRED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         originalConstraint = textFieldBottomConstraint.constant
@@ -106,6 +107,11 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         updateWithChannel()
     }
     
+    @objc func idleTimerExpired(_ notif: Notification) {
+        print("Inactivity timer expired")
+        setTypingStopped()
+    }
+    
     @objc func keyboardWillShow(notification: Notification) {
 
         guard let info = notification.userInfo else { return }
@@ -146,6 +152,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     func setTypingStopped() {
         isTyping = false
         sendBtn.isHidden = true
+        TimerService.instance.cancelIdleTimer()
         SocketService.instance.socket.emit(STOP_TYPE, UserDataService.instance.name)
     }
     @IBAction func messageBoxEditting(_ sender: Any) {
@@ -157,6 +164,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         } else {
             isTyping = true
             sendBtn.isHidden = false
+            TimerService.instance.resetIdleTimer()
             SocketService.instance.socket.emit(START_TYPE, UserDataService.instance.name, channelId)
         }
     }
@@ -168,7 +176,10 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             let channelId = MessageService.instance.selectedChannel?.id,
             let message = messageTxtBox.text,
             !message.isEmpty
-            else { return }
+            else {
+                TimerService.instance.cancelIdleTimer()
+                return
+            }
         
         SocketService.instance.addMessage(messageBody: message, channelId: channelId) { (success) in
             if success {

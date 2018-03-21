@@ -60,6 +60,7 @@ let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.329411764
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("NotifUserDataChanged")
 let NOTIF_CHANNEL_DATA_DID_CHANGE = Notification.Name("NotifChannelDataChanged")
 let NOTIF_CHANNEL_SELECTED = Notification.Name("NotifChannelSelected")
+let NOTIF_TIMER_EXPIRED = Notification.Name("NotifTimerExpired")
 
 // Socket Events
 let NEW_CHANNEL = "newChannel"
@@ -69,3 +70,6 @@ let STOP_TYPE = "stopType"
 let TYPING_UPDATE = "userTypingUpdate"
 let NEW_MESSAGE = "newMessage"
 let MESSAGE_CREATED = "messageCreated"
+
+// Misc
+let INACTIVITY_TIMEOUT_IN_SECONDS = 30
