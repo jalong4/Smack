@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     // Outlets
     @IBOutlet weak var emailTxt: UITextField!
@@ -24,6 +24,9 @@ class LoginVC: UIViewController {
         emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [.foregroundColor: smackPurplePlaceholder])
         passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [.foregroundColor: smackPurplePlaceholder])
         
+        emailTxt.delegate = self
+        passwordTxt.delegate = self
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginVC.handleTap))
         view.addGestureRecognizer(tap)
     }
@@ -31,8 +34,8 @@ class LoginVC: UIViewController {
     @objc func handleTap() {
         view.endEditing(true)
     }
-
-    @IBAction func loginPressed(_ sender: Any) {
+    
+    func performLogin() {
         dismiss(animated: true, completion: nil)
         guard
             let email = emailTxt.text, Utils.isEmailValid(email),
@@ -40,10 +43,10 @@ class LoginVC: UIViewController {
             else {
                 return
         }
-
+        
         spinner.startAnimating()
-                dismiss(animated: true, completion: nil)
-
+        dismiss(animated: true, completion: nil)
+        
         AuthService.instance.loginUser(email: email, password: password) { (success) in
             if success {
                 AuthService.instance.findUserByEmail(completion: { (success) in
@@ -55,6 +58,20 @@ class LoginVC: UIViewController {
                 })
             }
         }
+    }
+
+    @IBAction func loginPressed(_ sender: Any) {
+        performLogin()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        if textField.tag == 1  { // email
+            passwordTxt.becomeFirstResponder()
+        } else {
+            performLogin()
+        }
+        return true
     }
     
     @IBAction func closePressed(_ sender: Any) {

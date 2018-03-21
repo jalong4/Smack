@@ -16,7 +16,7 @@ struct Message {
     public private(set) var userName: String
     public private(set) var userAvatar: String
     public private(set) var userAvatarColor: String
-    public private(set) var timestamp: String
+    public private(set) var date: Date
     
     init(json: [String: Any]) {
         self.id = json["_id"] as? String ?? ""
@@ -26,6 +26,6 @@ struct Message {
         self.userName = json["userName"] as? String ?? ""
         self.userAvatar = json["userAvatar"] as? String ?? ""
         self.userAvatarColor = json["userAvatarColor"] as? String ?? ""
-        self.timestamp = json["timestamp"] as? String ?? ""
+        date = Utils.convertDateFormatter(timestamp: json["timeStamp"] as? String ?? "") ?? Date(timeIntervalSince1970: 0)
     }
 }

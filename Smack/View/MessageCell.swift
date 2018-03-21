@@ -22,13 +22,13 @@ class MessageCell: UITableViewCell {
     
     func configureCell(message: Message) {
 
-        let timeStamp = "12:40PM"
+
         
         let header = NSMutableAttributedString(string: "\(message.userName) ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.black])
         
-        header.append(NSAttributedString(string: timeStamp, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.black]))
+        let timeAgo = Utils.timeAgoSinceDate(message.date, currentDate: Date(), numericDates: true)
+        header.append(NSAttributedString(string: timeAgo, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.black]))
 
-        
         messageHeaderLbl.attributedText = header
         messageBodyLbl.text = message.messageBody
         

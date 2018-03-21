@@ -69,7 +69,7 @@ class SocketService: NSObject {
                 "userAvatar": dataArray[4],
                 "userAvatarColor": dataArray[5],
                 "_id": dataArray[6],
-                "timestamp": dataArray[7]
+                "timeStamp": dataArray[7]
             ]
             
             guard
@@ -86,6 +86,14 @@ class SocketService: NSObject {
             }
             
             completion(true)
+        }
+    }
+
+    func getTypingUsers(_ completionHandler: @escaping (_ typingUsers: [String: String]) -> Void) {
+        socket.on(TYPING_UPDATE) { (dataArray, ack) in
+            guard let typingUsers = dataArray[0] as? [String: String]
+                else { return }
+         completionHandler(typingUsers)
         }
     }
 }

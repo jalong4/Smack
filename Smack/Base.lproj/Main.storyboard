@@ -71,14 +71,14 @@
                                     <constraint firstItem="FcC-hE-VI0" firstAttribute="centerX" secondItem="OnZ-88-jZP" secondAttribute="centerX" id="od1-Yb-rVf"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxf-3e-sBz">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxf-3e-sBz">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dqq-Sl-yp8"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                 <connections>
                                     <action selector="messageBoxEditting:" destination="Lun-Zn-5ip" eventType="editingChanged" id="WfU-9Y-ngl"/>
                                 </connections>
@@ -142,21 +142,29 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvP-Es-3A0">
+                                <rect key="frame" x="8" y="621" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dvP-Es-3A0" firstAttribute="leading" secondItem="1gt-8U-9DK" secondAttribute="leading" constant="8" id="1Ch-BR-G68"/>
                             <constraint firstItem="zxf-3e-sBz" firstAttribute="top" secondItem="pvJ-0D-ptk" secondAttribute="bottom" constant="30" id="84e-cc-gza"/>
                             <constraint firstItem="zxf-3e-sBz" firstAttribute="leading" secondItem="1gt-8U-9DK" secondAttribute="leading" id="AxF-dW-g4R"/>
                             <constraint firstAttribute="trailingMargin" secondItem="loF-Fq-ALL" secondAttribute="trailing" constant="8" id="D2t-X9-sBB"/>
-                            <constraint firstItem="1gt-8U-9DK" firstAttribute="trailing" secondItem="zxf-3e-sBz" secondAttribute="trailing" id="JKq-Qm-jp0"/>
                             <constraint firstItem="1gt-8U-9DK" firstAttribute="trailing" secondItem="pvJ-0D-ptk" secondAttribute="trailing" constant="7" id="KNV-xv-gs8"/>
                             <constraint firstItem="pvJ-0D-ptk" firstAttribute="top" secondItem="OnZ-88-jZP" secondAttribute="bottom" id="Qf0-Nz-d0p"/>
                             <constraint firstItem="1gt-8U-9DK" firstAttribute="bottom" secondItem="zxf-3e-sBz" secondAttribute="bottom" id="TAT-bR-bh4"/>
                             <constraint firstItem="loF-Fq-ALL" firstAttribute="centerY" secondItem="zxf-3e-sBz" secondAttribute="centerY" id="X8C-h7-qng"/>
+                            <constraint firstItem="zxf-3e-sBz" firstAttribute="trailing" secondItem="1gt-8U-9DK" secondAttribute="trailing" id="YRv-29-Fod"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="leading" secondItem="1gt-8U-9DK" secondAttribute="leading" id="Yu7-dP-BgL"/>
                             <constraint firstItem="pvJ-0D-ptk" firstAttribute="leading" secondItem="1gt-8U-9DK" secondAttribute="leading" id="mgx-AX-FOl"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="top" secondItem="Kx2-ih-zgO" secondAttribute="top" id="ngU-sP-WLq"/>
                             <constraint firstItem="OnZ-88-jZP" firstAttribute="trailing" secondItem="1gt-8U-9DK" secondAttribute="trailing" id="phL-0f-i0v"/>
+                            <constraint firstItem="zxf-3e-sBz" firstAttribute="top" secondItem="dvP-Es-3A0" secondAttribute="bottom" constant="6" id="wPw-VK-wZS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1gt-8U-9DK"/>
                     </view>
@@ -167,6 +175,7 @@
                         <outlet property="sendBtn" destination="loF-Fq-ALL" id="JI0-tz-Jn6"/>
                         <outlet property="tableview" destination="pvJ-0D-ptk" id="yxG-a2-35M"/>
                         <outlet property="textFieldBottomConstraint" destination="TAT-bR-bh4" id="NAS-1w-Wfj"/>
+                        <outlet property="typingUsersLbl" destination="dvP-Es-3A0" id="yRN-mt-tZO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcg-PL-xEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,14 +330,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="P1G-rU-by8">
                                 <rect key="frame" x="62.5" y="160" width="250" height="86"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1Vw-ba-mKI">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1Vw-ba-mKI">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="DD6-yH-yoV"/>
                                         </constraints>
                                         <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeM-sP-L9s">
                                         <rect key="frame" x="0.0" y="34" width="250" height="2"/>
@@ -338,14 +347,14 @@
                                             <constraint firstAttribute="height" constant="2" id="Yyq-oQ-hxO"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lid-x9-p4m">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lid-x9-p4m">
                                         <rect key="frame" x="0.0" y="50" width="250" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="fXr-pN-k7j"/>
                                         </constraints>
                                         <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGC-XB-fI8">
                                         <rect key="frame" x="0.0" y="84" width="250" height="2"/>

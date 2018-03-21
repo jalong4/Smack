@@ -62,6 +62,7 @@ class MessageService {
                 for json in jsonArray {
                     self.messages.append(Message(json: json))
                 }
+                self.messages.sort(by: { $0.date < $1.date })
                 completion(true)
                 
                 

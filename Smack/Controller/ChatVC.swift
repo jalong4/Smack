@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     // Outlets
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
     @IBOutlet weak var messageTxtBox: UITextField!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var typingUsersLbl: UILabel!
     
     @IBOutlet weak var textFieldBottomConstraint: NSLayoutConstraint!
     var originalConstraint: CGFloat = 0.0
@@ -39,7 +40,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         originalConstraint = textFieldBottomConstraint.constant
         
         
-        
+        messageTxtBox.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
         view.addGestureRecognizer(tap)
 
@@ -54,6 +55,23 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
+        }
+        
+        SocketService.instance.getTypingUsers { (typingUsers) in
+            guard let channelId = MessageService.instance.selectedChannel?.id, AuthService.instance.isLoggedIn else { return }
+            var names = ""
+            var numberOfTypers = 0
+            for (typingUser, channel) in typingUsers {
+                if typingUser == UserDataService.instance.name || channel != channelId { continue }
+                names = (names == "") ? typingUser : "\(names), \(typingUser)"
+                numberOfTypers += 1
+            }
+
+            let verb = numberOfTypers > 1 ? "are" : "is"
+            DispatchQueue.main.async {
+                self.typingUsersLbl.text = numberOfTypers > 0 ? "\(names) \(verb) typing a message" : nil
+            }
+            
         }
         
         getUserData()
@@ -120,37 +138,57 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         DispatchQueue.main.async {
             let name = MessageService.instance.selectedChannel?.name ?? ""
             self.channelNameLbl.text = "#\(name)"
+            self.typingUsersLbl.text = nil
         }
         getMessages()
     }
+    
+    func setTypingStopped() {
+        isTyping = false
+        sendBtn.isHidden = true
+        SocketService.instance.socket.emit(STOP_TYPE, UserDataService.instance.name)
+    }
     @IBAction func messageBoxEditting(_ sender: Any) {
+        
+        guard let channelId = MessageService.instance.selectedChannel?.id else { return }
+        
         if messageTxtBox.text == "" {
-            isTyping = false
-            sendBtn.isHidden = true
+            setTypingStopped()
         } else {
-            if isTyping == false {
-                sendBtn.isHidden = false
-            }
             isTyping = true
+            sendBtn.isHidden = false
+            SocketService.instance.socket.emit(START_TYPE, UserDataService.instance.name, channelId)
         }
     }
     
-    @IBAction func sendMessagePressed(_ sender: Any) {
-        
+    func sendMessage() {
         if !AuthService.instance.isLoggedIn { return }
         
         guard
             let channelId = MessageService.instance.selectedChannel?.id,
             let message = messageTxtBox.text,
             !message.isEmpty
-        else { return }
+            else { return }
         
         SocketService.instance.addMessage(messageBody: message, channelId: channelId) { (success) in
             if success {
-                self.messageTxtBox.text = nil
-                self.view.endEditing(true)
+                DispatchQueue.main.async {
+                    self.messageTxtBox.text = ""
+                    self.setTypingStopped()
+                    self.view.endEditing(true)
+                }
             }
         }
+    }
+    
+    @IBAction func sendMessagePressed(_ sender: Any) {
+        sendMessage()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        messageTxtBox.resignFirstResponder()
+        sendMessage()
+        return true
     }
     
     @objc func userDataDidChange(_ notif: Notification) {
